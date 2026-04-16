@@ -1,0 +1,19 @@
+PROYECTO: Fragmentos de la Tierra
+===================================
+Sube tus fotos a esta carpeta con estos nombres exactos:
+
+  hero.jpg         → Imagen principal (banner grande en la página del proyecto)
+  thumbnail.jpg    → Miniatura (tarjeta en la página de trabajos)
+  concept.jpg      → Imagen conceptual / moodboard (imagen ancho completo)
+  research-1.jpg   → Imagen de investigación / referencia 1
+  research-2.jpg   → Imagen de investigación / referencia 2
+  research-3.jpg   → Imagen de investigación / referencia 3
+  sketches.jpg     → Bocetos de la colección (imagen ancho completo)
+  material.jpg     → Detalle de material y textura
+  final-1.jpg      → Pieza final fotografiada 1
+  final-2.jpg      → Pieza final fotografiada 2
+  final-3.jpg      → Pieza final fotografiada 3
+  final-4.jpg      → Pieza final fotografiada 4
+
+IMPORTANTE: Los nombres deben ser exactamente como se muestra arriba
+(minúsculas, con guion, extensión .jpg)

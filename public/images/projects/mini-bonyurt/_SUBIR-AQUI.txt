@@ -1,0 +1,15 @@
+PROYECTO: Mini Bon Yurt Experience Design
+==========================================
+Sube tus fotos a esta carpeta con estos nombres exactos:
+
+  hero.jpg         → Imagen principal (banner grande en la página del proyecto)
+  thumbnail.jpg    → Miniatura (tarjeta en la página de trabajos)
+  context.jpg      → Imagen de contexto / puntos de contacto
+  journey.jpg      → Mapa del recorrido de la experiencia (imagen ancho completo)
+  game.jpg         → Imagen del juego físico y digital
+  system-1.jpg     → Sistema técnico / disposición de sensores
+  system-2.jpg     → Flujo de entrada y salida del sistema
+  final.jpg        → Propuesta final (imagen ancho completo)
+
+IMPORTANTE: Los nombres deben ser exactamente como se muestra arriba
+(minúsculas, con guion, extensión .jpg)

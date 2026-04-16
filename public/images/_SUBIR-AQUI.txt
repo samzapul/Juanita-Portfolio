@@ -1,0 +1,11 @@
+IMÁGENES GENERALES DEL SITIO
+==============================
+Sube aquí las imágenes globales del sitio:
+
+  og-image.jpg     → Preview del sitio en redes sociales (cuando alguien comparte el link)
+                     Tamaño recomendado: 1200 x 630 px
+
+Las fotos de cada proyecto van en sus carpetas correspondientes:
+  → projects/mini-bonyurt/
+  → projects/fragmentos/
+  → projects/heleonor/

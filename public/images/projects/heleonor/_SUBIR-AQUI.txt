@@ -1,0 +1,14 @@
+PROYECTO: Heleonor (Mario Hernández)
+=====================================
+Sube tus fotos a esta carpeta con estos nombres exactos:
+
+  hero.jpg         → Imagen principal (banner grande en la página del proyecto)
+  thumbnail.jpg    → Miniatura (tarjeta en la página de trabajos)
+  context.jpg      → Imagen de contexto de la colección (imagen ancho completo)
+  research-1.jpg   → Imagen de investigación / referencia 1
+  research-2.jpg   → Imagen de investigación / referencia 2
+  process.jpg      → Imagen del proceso de diseño
+  final.jpg        → Imagen final de la colección (imagen ancho completo)
+
+IMPORTANTE: Los nombres deben ser exactamente como se muestra arriba
+(minúsculas, con guion, extensión .jpg)
