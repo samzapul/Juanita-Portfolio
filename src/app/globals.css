@@ -71,25 +71,25 @@
 
   /* Editorial text sizes */
   .text-display-xl {
-    font-size: clamp(3rem, 8vw, 8rem);
+    font-size: clamp(2rem, 8vw, 8rem);
     line-height: 0.95;
     letter-spacing: -0.02em;
   }
 
   .text-display-lg {
-    font-size: clamp(2.5rem, 6vw, 6rem);
+    font-size: clamp(1.75rem, 6vw, 6rem);
     line-height: 1;
     letter-spacing: -0.02em;
   }
 
   .text-display-md {
-    font-size: clamp(2rem, 4vw, 4rem);
+    font-size: clamp(1.4rem, 4vw, 4rem);
     line-height: 1.05;
     letter-spacing: -0.015em;
   }
 
   .text-editorial-sm {
-    font-size: clamp(1.25rem, 2vw, 1.75rem);
+    font-size: clamp(1.1rem, 2vw, 1.75rem);
     line-height: 1.3;
     letter-spacing: -0.01em;
   }

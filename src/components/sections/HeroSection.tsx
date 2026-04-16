@@ -11,11 +11,11 @@ export default function HeroSection({ lang }: HeroSectionProps) {
   const t = translations[lang].hero
 
   return (
-    <section className="relative px-6 md:px-10 lg:px-16 pt-28 md:pt-36 pb-20 md:pb-28">
+    <section className="relative px-6 md:px-10 lg:px-16 pt-24 md:pt-36 pb-16 md:pb-28 overflow-x-hidden">
       {/* Option 2 — large background letterform */}
       <span
         aria-hidden
-        className="pointer-events-none select-none absolute -top-3 md:top-1 right-0 italic leading-none text-clay/15"
+        className="pointer-events-none select-none absolute -top-3 md:top-1 right-0 italic leading-none text-clay/15 hidden md:inline"
         style={{
           fontFamily: 'var(--font-display)',
           fontWeight: 400,

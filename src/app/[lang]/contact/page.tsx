@@ -33,7 +33,7 @@ export default function ContactPage({ params }: { params: { lang: Locale } }) {
             <span className="eyebrow block mb-6">{t.eyebrow}</span>
           </FadeIn>
           <FadeIn delay={0.1}>
-            <h1 className="font-display font-light italic mb-4 text-[#C0182C] whitespace-nowrap" style={{ fontSize: 'clamp(2rem, 4.8vw, 5.5rem)' }}>
+            <h1 className="font-display font-light italic mb-4 text-[#C0182C] md:whitespace-nowrap" style={{ fontSize: 'clamp(1.6rem, 4.8vw, 5.5rem)' }}>
               {t.headline}
             </h1>
           </FadeIn>
@@ -56,7 +56,7 @@ export default function ContactPage({ params }: { params: { lang: Locale } }) {
                 className="group flex items-center justify-between py-8 border-b border-light-gray hover:border-ink/30 transition-colors duration-400"
               >
                 <span className="eyebrow">{link.label}</span>
-                <span className="font-display text-2xl md:text-4xl font-light group-hover:italic group-hover:text-[#C0182C] transition-all duration-400">
+                <span className="font-display text-lg md:text-4xl font-light group-hover:italic group-hover:text-[#C0182C] transition-all duration-400">
                   {link.value}
                 </span>
                 <span className="font-sans text-xs text-warm-gray group-hover:text-[#C0182C] group-hover:translate-x-1 transition-all duration-300">

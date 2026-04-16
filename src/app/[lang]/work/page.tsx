@@ -23,11 +23,11 @@ export default function WorkPage({ params }: { params: { lang: Locale } }) {
   const allProjects = getAllProjectsSorted()
 
   return (
-    <div className="relative pt-32 pb-24 md:pt-40 md:pb-32 px-6 md:px-10 lg:px-16">
+    <div className="relative pt-28 pb-16 md:pt-40 md:pb-32 px-6 md:px-10 lg:px-16 overflow-x-hidden">
       {/* JZ letterform */}
       <span
         aria-hidden
-        className="pointer-events-none select-none absolute -top-3 md:top-1 right-0 italic leading-none"
+        className="pointer-events-none select-none absolute -top-3 md:top-1 right-0 italic leading-none hidden md:inline"
         style={{
           fontFamily: 'var(--font-display)',
           fontWeight: 400,
@@ -100,7 +100,7 @@ function WorkListItem({
   return (
     <Link
       href={`/${lang}/project/${project.slug}`}
-      className="group flex items-center gap-6 md:gap-10 py-8 border-b border-light-gray hover:border-ink/30 transition-colors duration-400"
+      className="group flex items-center gap-3 md:gap-10 py-6 md:py-8 border-b border-light-gray hover:border-ink/30 transition-colors duration-400"
     >
       {/* Number */}
       <span className="eyebrow w-8 shrink-0 hidden md:block text-warm-gray/40">
@@ -120,7 +120,7 @@ function WorkListItem({
 
       {/* Text */}
       <div className="flex-1 min-w-0">
-        <h2 className="font-display text-2xl md:text-3xl font-light group-hover:italic transition-all duration-300">
+        <h2 className="font-display text-lg md:text-3xl font-light group-hover:italic transition-all duration-300 leading-tight">
           {project.title[lang]}
         </h2>
         <p className="font-sans text-sm text-warm-gray mt-1 line-clamp-1 hidden md:block">

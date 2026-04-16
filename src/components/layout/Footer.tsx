@@ -23,7 +23,7 @@ export default function Footer({ lang }: FooterProps) {
           </div>
 
           {/* Links */}
-          <div className="flex items-center gap-6 md:gap-8">
+          <div className="flex flex-wrap items-center gap-4 md:gap-8">
             <Link
               href={`/${lang}/work`}
               className="font-sans text-xs tracking-widest uppercase text-warm-gray hover:text-ink transition-colors duration-300"

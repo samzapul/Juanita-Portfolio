@@ -104,9 +104,9 @@ export default function AboutPage({ params }: { params: { lang: Locale } }) {
           {/* Philosophy block */}
           <div className="md:col-span-5 lg:col-start-8">
             <FadeIn delay={0.2}>
-              <div className="p-8" style={{ backgroundColor: '#C0182C' }}>
+              <div className="p-6 md:p-8" style={{ backgroundColor: '#C0182C' }}>
                 <span className="eyebrow block mb-6" style={{ color: '#ffffff' }}>{t.philosophy.eyebrow}</span>
-                <p className="font-display text-3xl md:text-4xl font-light italic leading-tight mb-6" style={{ color: '#ffffff' }}>
+                <p className="font-display text-2xl md:text-4xl font-light italic leading-tight mb-6" style={{ color: '#ffffff' }}>
                   {t.philosophy.title}
                 </p>
                 <p className="font-sans text-sm leading-relaxed" style={{ color: 'rgba(255,255,255,0.85)' }}>

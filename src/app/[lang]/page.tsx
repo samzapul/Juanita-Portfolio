@@ -92,7 +92,7 @@ export default function HomePage({ params }: { params: { lang: Locale } }) {
 
             <div className="md:col-span-6">
               <FadeIn delay={0.15}>
-                <p className="font-display text-4xl md:text-5xl lg:text-6xl font-light italic text-[#C0182C] leading-tight">
+                <p className="font-display text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-light italic text-[#C0182C] leading-tight">
                   {siteConfig.tagline[lang]}
                 </p>
               </FadeIn>

@@ -44,7 +44,7 @@ export default function ProjectPage({ params }: { params: Params }) {
   return (
     <article>
       {/* ─── HERO ───────────────────────────────────────────── */}
-      <div className="relative w-full h-[70vh] md:h-[88vh] bg-light-gray overflow-hidden">
+      <div className="relative w-full h-[55vh] md:h-[88vh] bg-light-gray overflow-hidden">
         <Image
           src={project.heroImage}
           alt={project.heroImageAlt}
@@ -104,14 +104,14 @@ export default function ProjectPage({ params }: { params: Params }) {
 
       {/* ─── PROJECT NAVIGATION ─────────────────────────────── */}
       <nav className="border-t border-light-gray px-6 md:px-10 lg:px-16 py-12 md:py-16">
-        <div className="max-w-screen-xl mx-auto flex items-center justify-between">
+        <div className="max-w-screen-xl mx-auto flex items-center justify-between gap-4">
           {prevProject ? (
             <Link
               href={`/${lang}/project/${prevProject.slug}`}
               className="group flex flex-col gap-1"
             >
               <span className="eyebrow text-warm-gray">{t.work.prevProject}</span>
-              <span className="font-display text-xl md:text-2xl font-light group-hover:italic transition-all duration-300">
+              <span className="font-display text-base md:text-2xl font-light group-hover:italic transition-all duration-300 line-clamp-2">
                 ← {prevProject.title[lang]}
               </span>
             </Link>
@@ -132,7 +132,7 @@ export default function ProjectPage({ params }: { params: Params }) {
               className="group flex flex-col gap-1 text-right"
             >
               <span className="eyebrow text-warm-gray">{t.work.nextProject}</span>
-              <span className="font-display text-xl md:text-2xl font-light group-hover:italic transition-all duration-300">
+              <span className="font-display text-base md:text-2xl font-light group-hover:italic transition-all duration-300 line-clamp-2">
                 {nextProject.title[lang]} →
               </span>
             </Link>
@@ -271,7 +271,7 @@ function Section({ section, index }: { section: ProjectSection; index: number })
                     </span>
                   )}
                   {section.title && (
-                    <h3 className="font-display text-2xl md:text-3xl font-light italic mb-4 leading-tight">
+                    <h3 className="font-display text-xl md:text-3xl font-light italic mb-4 leading-tight">
                       {section.title}
                     </h3>
                   )}
@@ -326,7 +326,7 @@ function Section({ section, index }: { section: ProjectSection; index: number })
           <div className="max-w-screen-xl mx-auto">
             <FadeIn>
               <blockquote className="border-l-2 border-clay pl-8 py-2 max-w-2xl">
-                <p className="font-display text-2xl md:text-3xl font-light italic text-ink/70 leading-snug">
+                <p className="font-display text-xl md:text-3xl font-light italic text-ink/70 leading-snug">
                   "{section.body}"
                 </p>
               </blockquote>
@@ -340,7 +340,7 @@ function Section({ section, index }: { section: ProjectSection; index: number })
         <div className="px-6 md:px-10 lg:px-16 py-10 md:py-14">
           <div className="max-w-screen-xl mx-auto">
             <FadeIn>
-              <div className="border-l-2 border-clay pl-8 md:pl-12 py-2 grid md:grid-cols-12 gap-8">
+              <div className="border-l-2 border-clay pl-6 md:pl-12 py-2 grid md:grid-cols-12 gap-8">
                 <div className="md:col-span-7">
                   {section.eyebrow && (
                     <span className="font-sans text-xs tracking-widest uppercase text-clay block mb-4">
@@ -348,7 +348,7 @@ function Section({ section, index }: { section: ProjectSection; index: number })
                     </span>
                   )}
                   {section.title && (
-                    <h3 className="font-display text-2xl md:text-3xl font-light italic mb-5 leading-tight">
+                    <h3 className="font-display text-xl md:text-3xl font-light italic mb-5 leading-tight">
                       {section.title}
                     </h3>
                   )}
