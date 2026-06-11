@@ -22,6 +22,7 @@ const config: Config = {
         // ─── EDIT FONTS HERE ─────────────────────────────────
         display: ['var(--font-display)', 'Georgia', 'serif'],
         sans: ['var(--font-outfit)', 'system-ui', 'sans-serif'],
+        subtitle: ['var(--font-subtitle)', 'Georgia', 'serif'],
         // ─────────────────────────────────────────────────────
       },
       letterSpacing: {

@@ -7,7 +7,7 @@ export const translations = {
   en: {
     // ─── Navigation ───────────────────────────────────────────
     nav: {
-      work: 'Work',
+      work: 'Projects',
       about: 'About',
       contact: 'Contact',
       cv: 'Download CV',
@@ -16,12 +16,12 @@ export const translations = {
     // ─── Hero ─────────────────────────────────────────────────
     hero: {
       eyebrow: 'Selected Work',
-      headline1: 'Concept-driven',
-      headline2: 'design for products,',
-      headline3: 'experiences, and brands.',
-      subline:
-        'Industrial designer with a strategic eye for branding, consumer-centered thinking, and purposeful design.',
-      cta: 'View Work',
+      headline1: 'Creative',
+      headline2: 'Portfolio',
+      headline3: '',
+      subline: 'Concept to production.',
+      subline2: 'Products, experiences, and brands.',
+      cta: 'View Projects',
     },
 
     // ─── Selected Work section ────────────────────────────────
@@ -108,7 +108,7 @@ export const translations = {
 
   es: {
     nav: {
-      work: 'Trabajo',
+      work: 'Proyectos',
       about: 'Sobre mí',
       contact: 'Contacto',
       cv: 'Descargar CV',
@@ -116,12 +116,12 @@ export const translations = {
 
     hero: {
       eyebrow: 'Trabajo Seleccionado',
-      headline1: 'Diseño impulsado',
-      headline2: 'por conceptos para productos,',
-      headline3: 'experiencias y marcas.',
-      subline:
-        'Diseñadora industrial con una mirada estratégica hacia el branding, el consumidor y el diseño con propósito.',
-      cta: 'Ver proyectos',
+      headline1: 'Portafolio',
+      headline2: 'Creativo',
+      headline3: '',
+      subline: 'Del concepto a la producción.',
+      subline2: 'Productos, experiencias y marcas.',
+      cta: 'Ver Proyectos',
     },
 
     work: {

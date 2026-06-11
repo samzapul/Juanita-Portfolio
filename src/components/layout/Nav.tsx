@@ -35,8 +35,8 @@ export default function Nav({ lang }: NavProps) {
   const switchPath = pathname.replace(`/${lang}`, `/${otherLang}`)
 
   const navLinks = [
-    { href: `/${lang}/work`, label: t.nav.work },
     { href: `/${lang}/about`, label: t.nav.about },
+    { href: `/${lang}/work`, label: t.nav.work },
     { href: `/${lang}/contact`, label: t.nav.contact },
   ]
 
@@ -45,20 +45,22 @@ export default function Nav({ lang }: NavProps) {
       <header
         className={clsx(
           'fixed top-0 left-0 right-0 z-50 transition-all duration-400',
-          scrolled && 'backdrop-blur-md border-b border-[#C0182C]/30'
+          scrolled && 'backdrop-blur-md border-b border-[#1B1F3B]'
         )}
         style={{
           backgroundColor: pathname.includes('/project/')
             ? 'transparent'
-            : 'rgba(192,24,44,0.15)',
+            : '#1B1F3B',
+          color: '#E6B8C2',
         }}
       >
-        <div className="max-w-screen-xl mx-auto px-6 md:px-10 lg:px-16">
-          <nav className="flex items-center justify-between h-16 md:h-20">
+        <div className="px-6 md:px-10 lg:px-16">
+          <nav className="max-w-screen-xl mx-auto flex items-center justify-between h-16 md:h-20">
             {/* Logo / Name */}
             <Link
               href={`/${lang}`}
-              className="font-display text-base md:text-lg font-light tracking-wide hover:opacity-60 transition-opacity duration-300"
+              className="font-display hover:opacity-60 transition-opacity duration-300"
+              style={{ fontSize: '30px', letterSpacing: '0px' }}
             >
               {siteConfig.name}
             </Link>
@@ -70,11 +72,12 @@ export default function Nav({ lang }: NavProps) {
                   key={link.href}
                   href={link.href}
                   className={clsx(
-                    'font-sans text-xs tracking-widest uppercase link-underline transition-opacity duration-300',
+                    'font-subtitle text-xs uppercase link-underline transition-opacity duration-300',
                     pathname.startsWith(link.href)
                       ? 'opacity-100'
                       : 'opacity-50 hover:opacity-100'
                   )}
+                  style={{ letterSpacing: '0.08em', fontSize: '15px' }}
                 >
                   {link.label}
                 </Link>
@@ -83,7 +86,8 @@ export default function Nav({ lang }: NavProps) {
               {/* Language switcher */}
               <Link
                 href={switchPath}
-                className="font-sans text-xs tracking-widest uppercase opacity-40 hover:opacity-100 transition-opacity duration-300"
+                className="font-subtitle uppercase opacity-40 hover:opacity-100 transition-opacity duration-300"
+                style={{ fontSize: '15px', letterSpacing: '0.085em' }}
               >
                 {otherLang.toUpperCase()}
               </Link>
@@ -93,7 +97,8 @@ export default function Nav({ lang }: NavProps) {
                 href={siteConfig.cvPath}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-sans text-xs tracking-widest uppercase border border-ink/30 hover:border-[#C0182C] hover:bg-[#C0182C] hover:text-cream px-4 py-2 transition-all duration-400 ease-premium"
+                className="font-subtitle uppercase border border-[#E6B8C2] hover:border-[#F19DAF] hover:bg-[#F19DAF] hover:text-cream px-4 py-2 rounded-full transition-all duration-400 ease-premium"
+                style={{ fontSize: '15px', letterSpacing: '0.085em' }}
               download
               >
                 {t.nav.cv}

@@ -29,18 +29,16 @@ export default function HomePage({ params }: { params: { lang: Locale } }) {
       <HeroSection lang={lang} />
 
       {/* ─── SELECTED WORK ─────────────────────────────────────── */}
-      <section className="px-6 md:px-10 lg:px-16 py-12 md:py-16">
+      <section className="px-6 md:px-10 lg:px-16 py-12 md:py-16" style={{ marginTop: '-1.5cm' }}>
         <div className="max-w-screen-xl mx-auto">
-          <FadeIn className="mb-16 md:mb-20 flex items-end justify-between">
-            <div>
-              <span className="eyebrow block mb-3">{t.work.sectionLabel}</span>
-              <div className="h-px w-12 bg-ink/20" />
-            </div>
+
+          <FadeIn className="mb-8">
             <Link
               href={`/${lang}/work`}
-              className="font-sans text-xs tracking-widest uppercase text-warm-gray hover:text-ink transition-colors duration-300 hidden md:block"
+              className="font-subtitle text-[15px] uppercase border-b border-ink/30 pb-0.5 hover:border-ink transition-colors duration-300"
+              style={{ letterSpacing: '0.08em' }}
             >
-              {t.work.viewAll}
+              {t.hero.cta}
             </Link>
           </FadeIn>
 
@@ -56,14 +54,6 @@ export default function HomePage({ params }: { params: { lang: Locale } }) {
             )}
           </div>
 
-          <FadeIn className="mt-12 md:hidden">
-            <Link
-              href={`/${lang}/work`}
-              className="font-sans text-xs tracking-widest uppercase border-b border-ink/30 pb-0.5"
-            >
-              {t.work.viewAll}
-            </Link>
-          </FadeIn>
         </div>
       </section>
 
@@ -106,7 +96,7 @@ export default function HomePage({ params }: { params: { lang: Locale } }) {
         <div className="max-w-screen-xl mx-auto text-center">
           <FadeIn>
             <span className="eyebrow block mb-6">{t.contact.eyebrow}</span>
-            <h2 className="font-display text-display-md font-light italic mb-10 max-w-2xl mx-auto">
+            <h2 className="font-subtitle text-display-md font-light italic mb-10 max-w-2xl mx-auto">
               {t.contact.headline}
             </h2>
             <a

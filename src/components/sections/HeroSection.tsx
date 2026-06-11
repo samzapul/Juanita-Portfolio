@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { siteConfig, type Locale } from '@/lib/config'
 import { translations } from '@/lib/translations'
 import FadeIn from '@/components/ui/FadeIn'
@@ -11,46 +12,45 @@ export default function HeroSection({ lang }: HeroSectionProps) {
   const t = translations[lang].hero
 
   return (
-    <section className="relative px-6 md:px-10 lg:px-16 pt-24 md:pt-36 pb-16 md:pb-28 overflow-x-hidden">
-      {/* Option 2 — large background letterform */}
-      <span
-        aria-hidden
-        className="pointer-events-none select-none absolute -top-3 md:top-1 right-0 italic leading-none text-clay/15 hidden md:inline"
-        style={{
-          fontFamily: 'var(--font-display)',
-          fontWeight: 400,
-          fontSize: 'clamp(22rem, 44vw, 54rem)',
-        }}
-      >
-        JZ
-      </span>
-      <div className="max-w-screen-xl mx-auto relative z-10">
-        <FadeIn delay={0.05}>
-          <h1 className="font-display text-display-lg leading-none tracking-tight mb-10">
-            <span className="block">{t.headline1}</span>
-            <span className="block italic">{t.headline2}</span>
-            <span className="block">{t.headline3}</span>
-          </h1>
-        </FadeIn>
+    <section className="relative px-6 md:px-10 lg:px-16 pt-24 md:pt-36 pb-16 md:pb-28 overflow-x-hidden" style={{ backgroundColor: '#FAF9F6' }}>
+      <div className="max-w-screen-xl mx-auto relative z-10 flex flex-col md:flex-row md:items-center gap-8">
+        {/* Left: text content */}
+        <div className="flex-1">
+          <FadeIn delay={0.05}>
+            <h1 className="font-display leading-none tracking-tight mb-10" style={{ fontSize: '125px' }}>
+              <span className="block">
+                {lang === 'en' ? <span style={{ background: 'linear-gradient(transparent 15%, #F19DAF 15%, #F19DAF 88%, transparent 88%)', WebkitTextStroke: '2px #1A1A1A', WebkitTextFillColor: 'transparent' }}>{t.headline1}</span> : t.headline1}
+              </span>
+              <span className="block italic">
+                {lang === 'es' ? <span style={{ background: 'linear-gradient(transparent 15%, #F19DAF 15%, #F19DAF 88%, transparent 88%)', WebkitTextStroke: '2px #1A1A1A', WebkitTextFillColor: 'transparent' }}>{t.headline2}</span> : t.headline2}
+              </span>
+              <span className="block">{t.headline3}</span>
+            </h1>
+          </FadeIn>
 
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8">
           <FadeIn delay={0.18} className="max-w-md">
-            <p className="font-sans text-sm text-warm-gray leading-relaxed">
+            <p className="font-subtitle text-[20px] font-bold text-[#000000] leading-relaxed">
               {t.subline}
+            </p>
+            <p className="font-subtitle text-[20px] font-bold text-[#000000] leading-relaxed">
+              {t.subline2}
             </p>
           </FadeIn>
 
-          <FadeIn delay={0.24}>
-            <Link
-              href={`/${lang}/work`}
-              className="font-sans text-xs tracking-widest uppercase border-b border-ink/30 pb-0.5 hover:border-ink transition-colors duration-300"
-            >
-              {t.cta}
-            </Link>
-          </FadeIn>
         </div>
+
+        {/* Right: image */}
+        <FadeIn delay={0.12} className="flex-shrink-0 flex justify-end">
+          <Image
+            src="/images/about/hero.png"
+            alt="Juanita Zapata"
+            width={480}
+            height={600}
+            className="object-cover"
+            priority
+          />
+        </FadeIn>
       </div>
     </section>
-
   )
 }
