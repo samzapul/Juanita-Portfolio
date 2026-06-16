@@ -35,14 +35,14 @@ export default function HomePage({ params }: { params: { lang: Locale } }) {
           <FadeIn className="mb-8">
             <Link
               href={`/${lang}/work`}
-              className="font-subtitle text-[15px] uppercase border-b border-ink/30 pb-0.5 hover:border-ink transition-colors duration-300"
-              style={{ letterSpacing: '0.08em' }}
+              className="font-subtitle text-[15px] uppercase border-b border-ink/30 pb-0.5 hover:border-ink transition-colors duration-300 text-ink"
+              style={{ letterSpacing: '0.25em' }}
             >
               {t.hero.cta}
             </Link>
           </FadeIn>
 
-          <div className="grid md:grid-cols-3 gap-6 md:gap-8 lg:gap-10">
+          <div className="grid md:grid-cols-3 gap-3 md:gap-4 lg:gap-5">
             {featured[0] && (
               <ProjectCard project={featured[0]} lang={lang} variant="default" index={0} />
             )}
@@ -58,18 +58,19 @@ export default function HomePage({ params }: { params: { lang: Locale } }) {
       </section>
 
       {/* ─── ABOUT PREVIEW ─────────────────────────────────────── */}
-      <section className="px-6 md:px-10 lg:px-16 py-24 md:py-32 border-t border-light-gray">
+      <section className="px-6 md:px-10 lg:px-16 py-24 md:py-32 border-t border-light-gray" style={{ backgroundColor: '#1B1F3B' }}>
         <div className="max-w-screen-xl mx-auto">
           <div className="grid md:grid-cols-12 gap-10 items-center">
             <div className="md:col-span-5">
               <FadeIn delay={0.05}>
-                <span className="eyebrow block mb-6">{t.aboutPreview.eyebrow}</span>
-                <p className="font-display text-editorial-sm font-light leading-snug">
+                <span className="font-sans text-[15px] block mb-6 uppercase" style={{ color: '#FAF9F6', letterSpacing: '0.25em' }}>{t.aboutPreview.eyebrow}</span>
+                <p className="font-subtitle text-editorial-sm font-light leading-snug" style={{ color: '#FAF9F6' }}>
                   {t.aboutPreview.text}
                 </p>
                 <Link
                   href={`/${lang}/about`}
-                  className="font-sans text-xs tracking-widest uppercase text-warm-gray hover:text-ink transition-colors duration-300 mt-8 inline-block"
+                  className="font-sans text-[15px] uppercase transition-colors duration-300 mt-8 inline-block"
+                  style={{ color: '#FAF9F6', letterSpacing: '0.25em' }}
                 >
                   {t.aboutPreview.link}
                 </Link>
@@ -82,7 +83,7 @@ export default function HomePage({ params }: { params: { lang: Locale } }) {
 
             <div className="md:col-span-6">
               <FadeIn delay={0.15}>
-                <p className="font-display text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-light italic text-[#C0182C] leading-tight">
+                <p className="font-display text-[50px] font-light italic text-[#F19DAF] leading-tight text-center">
                   {siteConfig.tagline[lang]}
                 </p>
               </FadeIn>
@@ -95,13 +96,13 @@ export default function HomePage({ params }: { params: { lang: Locale } }) {
       <section className="px-6 md:px-10 lg:px-16 py-24 md:py-32 border-t border-light-gray">
         <div className="max-w-screen-xl mx-auto text-center">
           <FadeIn>
-            <span className="eyebrow block mb-6">{t.contact.eyebrow}</span>
-            <h2 className="font-subtitle text-display-md font-light italic mb-10 max-w-2xl mx-auto">
+            <span className="font-subtitle block mb-6 text-[15px] font-medium tracking-[0.25em] uppercase text-ink">{t.contact.eyebrow}</span>
+            <h2 className="font-display text-display-md font-light italic mb-10 max-w-2xl mx-auto">
               {t.contact.headline}
             </h2>
             <a
               href={`mailto:${siteConfig.email}`}
-              className="font-sans text-xs tracking-widest uppercase border border-ink hover:border-[#C0182C] hover:bg-[#C0182C] hover:text-cream px-8 py-4 inline-block transition-all duration-400 ease-premium"
+              className="font-subtitle text-xs tracking-widest lowercase border border-[#F19DAF] hover:border-[#F19DAF] hover:bg-[#F19DAF] hover:text-cream px-8 py-4 inline-block transition-all duration-400 ease-premium rounded-full"
             >
               {siteConfig.email}
             </a>

@@ -57,8 +57,8 @@ export default function ProjectCard({
         {/* Meta */}
         <div className="pt-4 pb-2">
           <div className="flex items-center justify-between mb-1">
-            <span className="eyebrow">{project.category[lang]}</span>
-            <span className="eyebrow">{project.year}</span>
+            <span className="font-subtitle text-[13px] font-medium uppercase text-warm-gray" style={{ letterSpacing: '1px' }}>{project.category[lang]}</span>
+            <span className="font-subtitle text-[13px] font-medium uppercase text-warm-gray">{project.year}</span>
           </div>
           <h3 className="font-display text-xl md:text-2xl font-light mt-1">
             {project.title[lang]}

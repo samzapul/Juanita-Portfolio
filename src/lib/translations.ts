@@ -44,8 +44,8 @@ export const translations = {
 
     // ─── About page ───────────────────────────────────────────
     about: {
-      eyebrow: 'About',
-      headline: 'Designing with strategy, identity, and purpose.',
+      eyebrow: 'Hello!',
+      headline: 'I am Juanita',
       intro:
         'I am an industrial designer with a creative and strategic approach, interested in the intersection of product, branding, and consumer-centered design. My work is driven by the intention to build solutions with identity—clear in concept, coherent in execution, and meaningful in the way they connect with people.',
       paragraph2:
@@ -141,8 +141,8 @@ export const translations = {
     },
 
     about: {
-      eyebrow: 'Sobre mí',
-      headline: 'Diseñar con estrategia, identidad y propósito.',
+      eyebrow: '¡Hola!',
+      headline: 'Soy Juanita',
       intro:
         'Soy diseñadora industrial con un enfoque creativo y estratégico, interesada en la intersección entre producto, branding y diseño centrado en el consumidor. Mi trabajo parte de la intención de construir soluciones con identidad: claras en su concepto, coherentes en su ejecución y significativas en la forma en que conectan con las personas.',
       paragraph2:
