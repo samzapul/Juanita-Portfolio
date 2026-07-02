@@ -22,6 +22,8 @@ export const translations = {
       approachLabel: 'Approach',
       heroCta: 'About me',
       portfolioTitle: 'Creative Portfolio',
+      thumbnailLabels: ['Experience Design', 'Product Design', 'Brand Identity'],
+      projectsTitle: 'My Projects',
     },
 
     // ─── Hero ─────────────────────────────────────────────────
@@ -131,6 +133,8 @@ export const translations = {
       approachLabel: 'Enfoque',
       heroCta: 'Sobre mí',
       portfolioTitle: 'Portafolio Creativo',
+      thumbnailLabels: ['Diseño de experiencias', 'Diseño de productos', 'Identidad de marca'],
+      projectsTitle: 'Mis proyectos',
     },
 
     hero: {

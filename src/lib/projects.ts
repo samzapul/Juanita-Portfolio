@@ -33,9 +33,12 @@ export interface ProjectSection {
   items?: { label: string; value: string }[]
 }
 
+export type FilterCategory = 'experiencia' | 'producto' | 'identidad'
+
 export interface Project {
   slug: string
   featured: boolean
+  filterCategory: FilterCategory
   order: number
   year: string
   category: {
@@ -68,6 +71,7 @@ export interface Project {
 const miniBonyurt: Project = {
   slug: 'mini-bonyurt',
   featured: true,
+  filterCategory: 'experiencia',
   order: 1,
   year: '2025',
   category: {
@@ -263,6 +267,7 @@ const miniBonyurt: Project = {
 const fragmentos: Project = {
   slug: 'fragmentos-de-la-tierra',
   featured: true,
+  filterCategory: 'producto',
   order: 2,
   year: '2025',
   category: {
@@ -476,6 +481,7 @@ const fragmentos: Project = {
 const heleonor: Project = {
   slug: 'heleonor',
   featured: true,
+  filterCategory: 'producto',
   order: 3,
   year: '2024',
   category: {
@@ -637,8 +643,54 @@ const heleonor: Project = {
   },
 }
 
+// ═══════════════════════════════════════════════════════════════
+// PROJECT 4: INGEMAT — placeholder (content coming soon)
+// ═══════════════════════════════════════════════════════════════
+const ingemat: Project = {
+  slug: 'ingemat',
+  featured: false,
+  filterCategory: 'identidad',
+  order: 4,
+  year: '2025',
+  category: { en: 'Brand Identity', es: 'Identidad de Marca' },
+  title: { en: 'Ingemat', es: 'Ingemat' },
+  shortDescription: {
+    en: 'Brand identity project. Content coming soon.',
+    es: 'Proyecto de identidad de marca. Contenido próximamente.',
+  },
+  heroImage: '/images/projects/ingemat/hero.jpg',
+  heroImageAlt: 'Ingemat — brand identity',
+  thumbnail: '/images/projects/ingemat/thumbnail.jpg',
+  thumbnailAlt: 'Ingemat thumbnail',
+  tags: ['Brand Identity'],
+  sections: { en: [], es: [] },
+}
+
+// ═══════════════════════════════════════════════════════════════
+// PROJECT 5: LA MENINA — placeholder (content coming soon)
+// ═══════════════════════════════════════════════════════════════
+const laMenina: Project = {
+  slug: 'la-menina',
+  featured: false,
+  filterCategory: 'identidad',
+  order: 5,
+  year: '2025',
+  category: { en: 'Brand Identity', es: 'Identidad de Marca' },
+  title: { en: 'La Menina', es: 'La Menina' },
+  shortDescription: {
+    en: 'Brand identity project. Content coming soon.',
+    es: 'Proyecto de identidad de marca. Contenido próximamente.',
+  },
+  heroImage: '/images/projects/la-menina/hero.jpg',
+  heroImageAlt: 'La Menina — brand identity',
+  thumbnail: '/images/projects/la-menina/thumbnail.jpg',
+  thumbnailAlt: 'La Menina thumbnail',
+  tags: ['Brand Identity'],
+  sections: { en: [], es: [] },
+}
+
 // ─── Export all projects ──────────────────────────────────────
-export const projects: Project[] = [miniBonyurt, fragmentos, heleonor]
+export const projects: Project[] = [miniBonyurt, fragmentos, heleonor, ingemat, laMenina]
 
 // Helper functions
 export function getProjectBySlug(slug: string): Project | undefined {
@@ -651,4 +703,8 @@ export function getFeaturedProjects(): Project[] {
 
 export function getAllProjectsSorted(): Project[] {
   return [...projects].sort((a, b) => a.order - b.order)
+}
+
+export function getProjectsByCategory(category: FilterCategory): Project[] {
+  return projects.filter((p) => p.filterCategory === category).sort((a, b) => a.order - b.order)
 }
