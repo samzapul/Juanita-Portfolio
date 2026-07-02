@@ -1,12 +1,20 @@
 import type { Metadata } from 'next'
-import { Outfit, DM_Serif_Display } from 'next/font/google'
+import { Outfit, Poppins, Playfair_Display } from 'next/font/google'
 import './globals.css'
 
 // ─── Fonts ────────────────────────────────────────────────────
-const dmSerifDisplay = DM_Serif_Display({
+const poppins = Poppins({
   variable: '--font-display',
   subsets: ['latin'],
-  weight: '400',
+  weight: ['300', '400', '600', '700'],
+  style: ['normal', 'italic'],
+  display: 'swap',
+})
+
+const playfairDisplay = Playfair_Display({
+  variable: '--font-subtitle',
+  subsets: ['latin'],
+  weight: ['400', '700'],
   style: ['normal', 'italic'],
   display: 'swap',
 })
@@ -39,7 +47,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${dmSerifDisplay.variable} ${outfit.variable} bg-cream text-ink antialiased`}
+        className={`${poppins.variable} ${playfairDisplay.variable} ${outfit.variable} bg-cream text-ink antialiased`}
       >
         {children}
       </body>

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { translations } from '@/lib/translations'
+import { getTranslations, getLocale } from '@/lib/translations'
 import { siteConfig, type Locale } from '@/lib/config'
 import FadeIn from '@/components/ui/FadeIn'
 
@@ -8,13 +8,13 @@ export async function generateMetadata({
 }: {
   params: { lang: Locale }
 }): Promise<Metadata> {
-  const t = translations[params.lang]
+  const t = getTranslations(params.lang)
   return { title: t.nav.contact }
 }
 
 export default function ContactPage({ params }: { params: { lang: Locale } }) {
-  const lang = params.lang
-  const t = translations[lang].contact
+  const lang = getLocale(params.lang)
+  const t = getTranslations(lang).contact
 
   const links = [
     { label: t.emailLabel, href: `mailto:${siteConfig.email}`, value: siteConfig.email, show: !!siteConfig.email },

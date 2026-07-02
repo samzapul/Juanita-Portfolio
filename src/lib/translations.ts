@@ -1,3 +1,5 @@
+import { siteConfig, type Locale } from '@/lib/config'
+
 // ═══════════════════════════════════════════════════════════════
 // TRANSLATIONS — All UI text in English and Spanish
 // Edit this file to change any label, button, or phrase
@@ -11,6 +13,15 @@ export const translations = {
       about: 'About',
       contact: 'Contact',
       cv: 'Download CV',
+    },
+
+    // ─── Homepage-specific ────────────────────────────────────
+    home: {
+      heroHeadline: 'Products +\nExperiences.',
+      specializationLabel: 'Specialization',
+      approachLabel: 'Approach',
+      heroCta: 'About me',
+      portfolioTitle: 'Creative Portfolio',
     },
 
     // ─── Hero ─────────────────────────────────────────────────
@@ -114,6 +125,14 @@ export const translations = {
       cv: 'Descargar CV',
     },
 
+    home: {
+      heroHeadline: 'Productos +\nExperiencias.',
+      specializationLabel: 'Especialización',
+      approachLabel: 'Enfoque',
+      heroCta: 'Sobre mí',
+      portfolioTitle: 'Portafolio Creativo',
+    },
+
     hero: {
       eyebrow: 'Trabajo Seleccionado',
       headline1: 'Portafolio',
@@ -201,3 +220,17 @@ export const translations = {
 }
 
 export type TranslationKey = typeof translations.en
+
+// ─── Helper functions ─────────────────────────────────────────
+// Used by components to safely get the locale and translations.
+
+export function getLocale(lang: string): Locale {
+  if ((siteConfig.locales as readonly string[]).includes(lang)) {
+    return lang as Locale
+  }
+  return siteConfig.defaultLocale
+}
+
+export function getTranslations(lang: Locale): TranslationKey {
+  return translations[lang]
+}

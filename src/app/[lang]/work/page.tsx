@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { translations } from '@/lib/translations'
+import { getTranslations, getLocale } from '@/lib/translations'
 import { getAllProjectsSorted } from '@/lib/projects'
 import { siteConfig, type Locale } from '@/lib/config'
 import ProjectCard from '@/components/ui/ProjectCard'
@@ -10,16 +10,16 @@ export async function generateMetadata({
 }: {
   params: { lang: Locale }
 }): Promise<Metadata> {
-  const lang = params.lang
+  const lang = getLocale(params.lang)
   return {
-    title: translations[lang].nav.work,
+    title: getTranslations(lang).nav.work,
     description: siteConfig.description[lang],
   }
 }
 
 export default function WorkPage({ params }: { params: { lang: Locale } }) {
-  const lang = params.lang
-  const t = translations[lang]
+  const lang = getLocale(params.lang)
+  const t = getTranslations(lang)
   const allProjects = getAllProjectsSorted()
 
   return (
@@ -63,7 +63,7 @@ export default function WorkPage({ params }: { params: { lang: Locale } }) {
         <div className="mt-24 md:mt-32">
           <hr className="rule mb-16" />
           <FadeIn>
-            <span className="eyebrow block mb-12">All Projects</span>
+            <span className="eyebrow block mb-12">{t.work.viewAll}</span>
           </FadeIn>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
             {allProjects.map((project, i) => (
@@ -120,7 +120,7 @@ function WorkListItem({
 
       {/* Text */}
       <div className="flex-1 min-w-0">
-        <h2 className="font-display text-lg md:text-3xl font-light group-hover:italic transition-all duration-300 leading-tight">
+        <h2 className="font-subtitle text-lg md:text-3xl font-light group-hover:italic transition-all duration-300 leading-tight">
           {project.title[lang]}
         </h2>
         <p className="font-sans text-sm text-warm-gray mt-1 line-clamp-1 hidden md:block">

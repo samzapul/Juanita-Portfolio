@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { siteConfig, type Locale } from '@/lib/config'
-import { translations } from '@/lib/translations'
+import { getTranslations } from '@/lib/translations'
 import clsx from 'clsx'
 
 interface NavProps {
@@ -13,7 +13,7 @@ interface NavProps {
 }
 
 export default function Nav({ lang }: NavProps) {
-  const t = translations[lang]
+  const t = getTranslations(lang)
   const pathname = usePathname()
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
@@ -30,9 +30,8 @@ export default function Nav({ lang }: NavProps) {
     setMenuOpen(false)
   }, [pathname])
 
-  // Swap lang in current path
-  const otherLang: Locale = lang === 'en' ? 'es' : 'en'
-  const switchPath = pathname.replace(`/${lang}`, `/${otherLang}`)
+  const esPath = pathname.replace(`/${lang}`, '/es')
+  const enPath = pathname.replace(`/${lang}`, '/en')
 
   const navLinks = [
     { href: `/${lang}/about`, label: t.nav.about },
@@ -44,18 +43,22 @@ export default function Nav({ lang }: NavProps) {
     <>
       <header
         className={clsx(
-          'fixed top-0 left-0 right-0 z-50 transition-all duration-400',
-          scrolled && 'backdrop-blur-md border-b border-[#1B1F3B]'
+          'fixed z-50 transition-all duration-400',
+          scrolled && 'backdrop-blur-md'
         )}
         style={{
+          top: '1cm',
+          left: '0.5cm',
+          right: '0.5cm',
+          borderRadius: '999px',
           backgroundColor: pathname.includes('/project/')
-            ? 'transparent'
+            ? 'rgba(27,31,59,0.85)'
             : '#1B1F3B',
           color: '#E6B8C2',
         }}
       >
-        <div className="px-6 md:px-10 lg:px-16">
-          <nav className="max-w-screen-xl mx-auto flex items-center justify-between h-16 md:h-20">
+        <div className="px-6 md:px-8">
+          <nav className="flex items-center justify-between h-14 md:h-16">
             {/* Logo / Name */}
             <Link
               href={`/${lang}`}
@@ -97,13 +100,23 @@ export default function Nav({ lang }: NavProps) {
               </a>
 
               {/* Language switcher */}
-              <Link
-                href={switchPath}
-                className="font-subtitle uppercase opacity-40 hover:opacity-100 transition-opacity duration-300"
-                style={{ fontSize: '15px', letterSpacing: '0.085em' }}
-              >
-                {otherLang.toUpperCase()}
-              </Link>
+              <div className="flex items-center gap-1.5">
+                <Link
+                  href={esPath}
+                  className={`font-subtitle uppercase transition-opacity duration-300 ${lang === 'es' ? 'opacity-100' : 'opacity-40 hover:opacity-100'}`}
+                  style={{ fontSize: '15px', letterSpacing: '0.085em' }}
+                >
+                  ES
+                </Link>
+                <span className="opacity-30" style={{ fontSize: '13px' }}>/</span>
+                <Link
+                  href={enPath}
+                  className={`font-subtitle uppercase transition-opacity duration-300 ${lang === 'en' ? 'opacity-100' : 'opacity-40 hover:opacity-100'}`}
+                  style={{ fontSize: '15px', letterSpacing: '0.085em' }}
+                >
+                  EN
+                </Link>
+              </div>
 
               {/* CV Button */}
               <a
@@ -120,12 +133,11 @@ export default function Nav({ lang }: NavProps) {
 
             {/* Mobile: lang switcher + hamburger */}
             <div className="flex md:hidden items-center gap-4">
-              <Link
-                href={switchPath}
-                className="font-sans text-xs tracking-widest uppercase opacity-40"
-              >
-                {otherLang.toUpperCase()}
-              </Link>
+              <div className="flex items-center gap-1.5">
+                <Link href={esPath} className={`font-sans text-xs tracking-widest uppercase transition-opacity duration-300 ${lang === 'es' ? 'opacity-100' : 'opacity-40'}`}>ES</Link>
+                <span className="opacity-30 text-xs">/</span>
+                <Link href={enPath} className={`font-sans text-xs tracking-widest uppercase transition-opacity duration-300 ${lang === 'en' ? 'opacity-100' : 'opacity-40'}`}>EN</Link>
+              </div>
               <button
                 onClick={() => setMenuOpen(!menuOpen)}
                 className="flex flex-col gap-1.5 p-1"
@@ -165,7 +177,7 @@ export default function Nav({ lang }: NavProps) {
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
             className="fixed inset-0 z-40 bg-cream flex flex-col"
           >
-            <div className="h-16 md:h-20" />
+            <div className="h-24 md:h-28" />
             <div className="flex-1 flex flex-col justify-center px-8 gap-8">
               {navLinks.map((link, i) => (
                 <motion.div

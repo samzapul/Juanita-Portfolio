@@ -1,13 +1,13 @@
 import Link from 'next/link'
 import { siteConfig, type Locale } from '@/lib/config'
-import { translations } from '@/lib/translations'
+import { getTranslations } from '@/lib/translations'
 
 interface FooterProps {
   lang: Locale
 }
 
 export default function Footer({ lang }: FooterProps) {
-  const t = translations[lang]
+  const t = getTranslations(lang)
   const year = new Date().getFullYear()
 
   return (

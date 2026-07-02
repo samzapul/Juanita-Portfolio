@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { siteConfig, type Locale } from '@/lib/config'
-import { translations } from '@/lib/translations'
+import { getTranslations, getLocale } from '@/lib/translations'
 import FadeIn from '@/components/ui/FadeIn'
 
 export async function generateMetadata({
@@ -10,8 +10,8 @@ export async function generateMetadata({
 }: {
   params: { lang: Locale }
 }): Promise<Metadata> {
-  const lang = params.lang
-  const t = translations[lang]
+  const lang = getLocale(params.lang)
+  const t = getTranslations(lang)
   return {
     title: t.nav.about,
     description: siteConfig.description[lang],
@@ -19,8 +19,8 @@ export async function generateMetadata({
 }
 
 export default function AboutPage({ params }: { params: { lang: Locale } }) {
-  const lang = params.lang
-  const t = translations[lang].about
+  const lang = getLocale(params.lang)
+  const t = getTranslations(lang).about
 
   return (
     <div className="pt-32 pb-24 md:pt-40 md:pb-32 px-6 md:px-10 lg:px-16">

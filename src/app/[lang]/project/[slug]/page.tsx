@@ -180,7 +180,7 @@ function Section({ section, index }: { section: ProjectSection; index: number })
                   </span>
                 )}
                 {section.title && (
-                  <h2 className="font-display text-display-md font-light italic mb-6 leading-tight">
+                  <h2 className="font-subtitle text-display-md font-light italic mb-6 leading-tight">
                     {section.title}
                   </h2>
                 )}
@@ -271,7 +271,7 @@ function Section({ section, index }: { section: ProjectSection; index: number })
                     </span>
                   )}
                   {section.title && (
-                    <h3 className="font-display text-xl md:text-3xl font-light italic mb-4 leading-tight">
+                    <h3 className="font-subtitle text-xl md:text-3xl font-light italic mb-4 leading-tight">
                       {section.title}
                     </h3>
                   )}
@@ -348,7 +348,7 @@ function Section({ section, index }: { section: ProjectSection; index: number })
                     </span>
                   )}
                   {section.title && (
-                    <h3 className="font-display text-xl md:text-3xl font-light italic mb-5 leading-tight">
+                    <h3 className="font-subtitle text-xl md:text-3xl font-light italic mb-5 leading-tight">
                       {section.title}
                     </h3>
                   )}
