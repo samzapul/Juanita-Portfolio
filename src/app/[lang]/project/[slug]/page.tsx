@@ -6,6 +6,7 @@ import { getProjectBySlug, getAllProjectsSorted, type ProjectSection } from '@/l
 import { type Locale } from '@/lib/config'
 import { translations } from '@/lib/translations'
 import FadeIn from '@/components/ui/FadeIn'
+import ImagePairToggle from '@/components/ui/ImagePairToggle'
 
 interface Params {
   lang: Locale
@@ -49,20 +50,22 @@ export default function ProjectPage({ params }: { params: Params }) {
           src={project.heroImage}
           alt={project.heroImageAlt}
           fill
-          className="object-cover"
+          className={project.heroImageFit === 'contain' ? 'object-contain' : 'object-cover'}
+          style={{ objectPosition: project.heroImagePosition ?? 'center center' }}
           priority
           sizes="100vw"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-ink/60 via-ink/10 to-transparent" />
-        <div className="absolute bottom-0 left-0 right-0 px-6 md:px-10 lg:px-16 pb-14 md:pb-20">
-          <div className="max-w-screen-xl mx-auto">
-            <span className="eyebrow text-cream/60 block mb-4">
+        <div className="absolute bottom-0 left-0 right-0 pb-3 md:pb-6" style={{ paddingLeft: 'calc(0.5cm + 2rem)', paddingRight: '0.5cm' }}>
+            <span
+              className="block mb-4 font-sans uppercase"
+              style={{ fontSize: '15px', letterSpacing: '0.085em', color: '#ffffff' }}
+            >
               {project.category[lang]} · {project.year}
             </span>
             <h1 className="font-display text-display-lg font-light italic text-cream leading-tight max-w-3xl">
               {project.title[lang]}
             </h1>
-          </div>
         </div>
       </div>
 
@@ -70,27 +73,29 @@ export default function ProjectPage({ params }: { params: Params }) {
       <div className="px-6 md:px-10 lg:px-16 py-12 md:py-16 border-b border-light-gray">
         <div className="max-w-screen-xl mx-auto">
           <div className="grid md:grid-cols-12 gap-10">
-            <div className="md:col-span-7 lg:col-span-6">
+            <div className={project.tags.length > 0 ? 'md:col-span-7 lg:col-span-6' : 'md:col-span-12 text-center'}>
               <FadeIn>
                 <p className="font-display text-editorial-sm font-light leading-snug">
                   {project.shortDescription[lang]}
                 </p>
               </FadeIn>
             </div>
-            <div className="md:col-span-5 lg:col-span-5 lg:col-start-8">
-              <FadeIn delay={0.1}>
-                <div className="flex flex-wrap gap-2 mt-2">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="font-sans text-xs tracking-widest uppercase border border-light-gray px-3 py-1 text-warm-gray"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </FadeIn>
-            </div>
+            {project.tags.length > 0 && (
+              <div className="md:col-span-5 lg:col-span-5 lg:col-start-8">
+                <FadeIn delay={0.1}>
+                  <div className="flex flex-wrap gap-2 mt-2">
+                    {project.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="font-sans text-xs tracking-widest uppercase border border-light-gray px-3 py-1 text-warm-gray"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </FadeIn>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -98,7 +103,7 @@ export default function ProjectPage({ params }: { params: Params }) {
       {/* ─── CONTENT SECTIONS ───────────────────────────────── */}
       <div>
         {sections.map((section, i) => (
-          <Section key={i} section={section} index={i} />
+          <Section key={i} section={section} index={i} titleFont={project.sectionTitleFont ?? 'subtitle'} bodyFont={project.sectionBodyFont ?? 'sans'} />
         ))}
       </div>
 
@@ -146,20 +151,22 @@ export default function ProjectPage({ params }: { params: Params }) {
 }
 
 // ─── Section renderer ─────────────────────────────────────────
-function Section({ section, index }: { section: ProjectSection; index: number }) {
+function Section({ section, index, titleFont, bodyFont }: { section: ProjectSection; index: number; titleFont: 'display' | 'subtitle'; bodyFont: 'display' | 'subtitle' | 'sans' }) {
   const sectionNum = String(index + 1).padStart(2, '0')
+  const titleClass = titleFont === 'display' ? 'font-display' : 'font-subtitle'
+  const bodyClass = bodyFont === 'subtitle' ? 'font-subtitle' : bodyFont === 'display' ? 'font-display' : 'font-sans'
 
   switch (section.type) {
     case 'metadata':
       return (
-        <div className="px-6 md:px-10 lg:px-16 py-10 md:py-12 border-b border-light-gray">
+        <div className="px-6 md:px-10 lg:px-16 py-10 md:py-12" style={{ backgroundColor: '#1B1F3B' }}>
           <div className="max-w-screen-xl mx-auto">
             <FadeIn>
               <dl className="grid grid-cols-2 md:grid-cols-4 gap-8">
                 {section.items?.map((item) => (
                   <div key={item.label}>
-                    <dt className="font-sans text-xs tracking-widest uppercase text-clay mb-2">{item.label}</dt>
-                    <dd className="font-sans text-sm text-ink">{item.value}</dd>
+                    <dt className="font-sans uppercase mb-2" style={{ fontSize: '16px', letterSpacing: '0.18em', color: 'rgba(230,184,194,0.6)' }}>{item.label}</dt>
+                    <dd className="font-sans" style={{ fontSize: '16px', letterSpacing: '0.18em', color: '#FAF9F6' }}>{item.value}</dd>
                   </div>
                 ))}
               </dl>
@@ -170,35 +177,29 @@ function Section({ section, index }: { section: ProjectSection; index: number })
 
     case 'text':
       return (
-        <div className="px-6 md:px-10 lg:px-16 py-10 md:py-14 border-b border-light-gray">
+        <div className={`px-6 md:px-10 lg:px-16 ${section.tightTop ? 'pt-0 pb-10 md:pb-14' : 'py-10 md:py-14'} ${section.noBorderBottom ? '' : 'border-b border-light-gray'}`}>
           <div className="max-w-screen-xl mx-auto">
-            <div className="grid md:grid-cols-12 gap-10 items-start">
-              <FadeIn className="md:col-span-7 lg:col-span-7">
-                {section.eyebrow && (
-                  <span className="font-sans text-xs tracking-widest uppercase text-clay block mb-4">
-                    {section.eyebrow}
-                  </span>
-                )}
-                {section.title && (
-                  <h2 className="font-subtitle text-display-md font-light italic mb-6 leading-tight">
-                    {section.title}
-                  </h2>
-                )}
-                {section.body && (
-                  <p className="font-sans text-sm md:text-base leading-relaxed text-ink/75 max-w-xl">
-                    {section.body}
-                  </p>
-                )}
-              </FadeIn>
-              <div className="hidden md:flex md:col-span-3 md:col-start-10 justify-end items-start">
-                <span
-                  className="font-display font-light italic text-clay/30 select-none"
-                  style={{ fontSize: 'clamp(5rem, 10vw, 9rem)', lineHeight: 1 }}
-                >
-                  {sectionNum}
+            <FadeIn>
+              {section.eyebrow && (
+                <span className="font-sans uppercase text-clay block mb-4" style={{ fontSize: '16px', letterSpacing: '0.18em' }}>
+                  {section.eyebrow}
                 </span>
-              </div>
-            </div>
+              )}
+              {section.title && (
+                <h2 className={`${titleClass} text-display-md font-light italic mb-6 leading-tight`}>
+                  {section.title}
+                </h2>
+              )}
+              {section.body && (
+                <div className="space-y-4">
+                  {section.body.split('\n\n').map((para, i) => (
+                    <p key={i} className={`${bodyClass} leading-relaxed text-ink/75`} style={{ fontSize: '16px', letterSpacing: bodyFont === 'subtitle' ? 'normal' : '0.18em' }}>
+                      {para}
+                    </p>
+                  ))}
+                </div>
+              )}
+            </FadeIn>
           </div>
         </div>
       )
@@ -206,17 +207,28 @@ function Section({ section, index }: { section: ProjectSection; index: number })
     case 'image':
       return (
         <div className="px-6 md:px-10 lg:px-16 py-8 md:py-10 border-b border-light-gray">
-          <div className="max-w-screen-xl mx-auto">
+          <div className={`mx-auto ${section.size === 'half' ? 'max-w-[50%]' : 'max-w-screen-xl'}`}>
             <FadeIn>
-              <div className="relative aspect-[16/9] overflow-hidden bg-light-gray">
+              {section.size === 'half' ? (
                 <Image
                   src={section.src!}
                   alt={section.alt || ''}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 1280px) 100vw, 1280px"
+                  width={0}
+                  height={0}
+                  sizes="50vw"
+                  className="w-full h-auto"
                 />
-              </div>
+              ) : (
+                <div className="relative aspect-[16/9] overflow-hidden bg-light-gray">
+                  <Image
+                    src={section.src!}
+                    alt={section.alt || ''}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 1280px) 100vw, 1280px"
+                  />
+                </div>
+              )}
               {section.caption && (
                 <p className="font-sans text-xs text-warm-gray mt-3 flex items-center gap-2">
                   <span className="inline-block w-4 h-px bg-clay/50" />
@@ -245,7 +257,7 @@ function Section({ section, index }: { section: ProjectSection; index: number })
 
     case 'image-text':
       return (
-        <div className="px-6 md:px-10 lg:px-16 py-10 md:py-14 border-b border-light-gray">
+        <div className={`px-6 md:px-10 lg:px-16 py-10 md:py-14 ${section.noBorderBottom ? '' : 'border-b border-light-gray'}`}>
           <div className="max-w-screen-xl mx-auto">
             <div
               className={`grid md:grid-cols-2 gap-10 md:gap-16 items-center ${
@@ -253,32 +265,37 @@ function Section({ section, index }: { section: ProjectSection; index: number })
               }`}
             >
               <FadeIn>
-                <div className="relative aspect-[4/3] overflow-hidden bg-light-gray">
+                <div className="overflow-hidden">
                   <Image
                     src={section.imageSrc!}
                     alt={section.imageAlt || ''}
-                    fill
-                    className="object-cover"
+                    width={0}
+                    height={0}
                     sizes="(max-width: 768px) 100vw, 50vw"
+                    className="w-full h-auto"
                   />
                 </div>
               </FadeIn>
               <FadeIn delay={0.1}>
                 <div>
                   {section.eyebrow && (
-                    <span className="font-sans text-xs tracking-widest uppercase text-clay block mb-4">
+                    <span className="font-sans uppercase text-clay block mb-4" style={{ fontSize: '16px', letterSpacing: '0.18em' }}>
                       {section.eyebrow}
                     </span>
                   )}
                   {section.title && (
-                    <h3 className="font-subtitle text-xl md:text-3xl font-light italic mb-4 leading-tight">
+                    <h3 className={`${titleClass} text-display-md font-light italic mb-6 leading-tight`}>
                       {section.title}
                     </h3>
                   )}
                   {section.body && (
-                    <p className="font-sans text-sm leading-relaxed text-ink/75">
-                      {section.body}
-                    </p>
+                    <div className="space-y-4">
+                      {section.body.split('\n\n').map((para, i) => (
+                        <p key={i} className={`${bodyClass} leading-relaxed text-ink/75`} style={{ fontSize: '16px', letterSpacing: bodyFont === 'subtitle' ? 'normal' : '0.18em' }}>
+                          {para}
+                        </p>
+                      ))}
+                    </div>
                   )}
                 </div>
               </FadeIn>
@@ -298,14 +315,40 @@ function Section({ section, index }: { section: ProjectSection; index: number })
             >
               {section.images?.map((img, i) => (
                 <FadeIn key={i} delay={i * 0.08}>
-                  <div className="relative aspect-square overflow-hidden bg-light-gray">
+                  <div className="group relative aspect-square overflow-hidden bg-light-gray cursor-pointer">
                     <Image
                       src={img.src}
                       alt={img.alt}
                       fill
-                      className="object-cover"
+                      className="object-cover transition-all duration-500 group-hover:opacity-30"
                       sizes="(max-width: 768px) 50vw, 33vw"
                     />
+                    {img.hoverTitle && (
+                      <div className="absolute inset-0 flex flex-col items-center justify-center px-5 md:px-8 opacity-0 group-hover:opacity-100 transition-opacity duration-400 overflow-y-auto">
+                        <p
+                          className="font-display font-semibold text-center text-ink leading-tight mb-1"
+                          style={{ fontSize: 'clamp(0.9rem, 1.4vw, 1.15rem)', letterSpacing: '0.04em' }}
+                        >
+                          {img.hoverTitle}
+                        </p>
+                        {img.hoverSubtitle && (
+                          <p
+                            className="font-subtitle font-light italic text-center text-ink/70 leading-snug mb-3"
+                            style={{ fontSize: 'clamp(0.75rem, 1vw, 0.9rem)' }}
+                          >
+                            {img.hoverSubtitle}
+                          </p>
+                        )}
+                        {img.hoverBody && (
+                          <p
+                            className="font-sans text-center text-ink/75 leading-relaxed"
+                            style={{ fontSize: 'clamp(0.65rem, 0.85vw, 0.8rem)' }}
+                          >
+                            {img.hoverBody}
+                          </p>
+                        )}
+                      </div>
+                    )}
                   </div>
                   {img.caption && (
                     <p className="font-sans text-xs text-warm-gray mt-2 flex items-center gap-2">
@@ -343,17 +386,17 @@ function Section({ section, index }: { section: ProjectSection; index: number })
               <div className="border-l-2 border-clay pl-6 md:pl-12 py-2 grid md:grid-cols-12 gap-8">
                 <div className="md:col-span-7">
                   {section.eyebrow && (
-                    <span className="font-sans text-xs tracking-widest uppercase text-clay block mb-4">
+                    <span className="font-sans uppercase text-clay block mb-4" style={{ fontSize: '16px', letterSpacing: '0.18em' }}>
                       {section.eyebrow}
                     </span>
                   )}
                   {section.title && (
-                    <h3 className="font-subtitle text-xl md:text-3xl font-light italic mb-5 leading-tight">
+                    <h3 className={`${titleClass} text-xl md:text-3xl font-light italic mb-5 leading-tight`}>
                       {section.title}
                     </h3>
                   )}
                   {section.body && (
-                    <p className="font-sans text-sm leading-relaxed text-ink/75">
+                    <p className={`${bodyClass} text-sm leading-relaxed text-ink/75`}>
                       {section.body}
                     </p>
                   )}
@@ -363,6 +406,9 @@ function Section({ section, index }: { section: ProjectSection; index: number })
           </div>
         </div>
       )
+
+    case 'image-pair-toggle':
+      return <ImagePairToggle section={section} bodyClass={bodyClass} bodyFont={bodyFont} />
 
     default:
       return null
